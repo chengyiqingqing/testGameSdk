@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.sww.testgamesdk">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+
+    <application
+        android:name=".LetoApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.NoActionBar">
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <!-- 刘海屏 适配  -->
+        <meta-data
+            android:name="android.notch_support"
+            android:value="true" />
+        <meta-data
+            android:name="notch.config"
+            android:value="portrait|landscape"/>
+
+        <!-- Demo splash  -->
+        <activity
+            android:name=".SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="mgc.com"
+                    android:scheme="mgc.game.box" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".SampleActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+
+        <activity
+            android:name=".SyncAccountActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+
+        <!-- 适配android N 的文件系统，authorities 中注意替换您的包名，包名+".fileprovider" -->
+        <provider
+            android:name="com.leto.game.base.provider.LetoFileProvider"
+            android:authorities="${applicationId}.leto.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/leto_file_path"
+                tools:replace="android:resource"
+                />
+        </provider>
+
+        <!--梦工厂小游戏配置 开始部分，MGC_APPID，MGC_CLIENTID，MGC_CLIENTKEY 相关信息，请到梦工厂小游戏平台上申请  -->
+        <meta-data
+            android:name="MGC_APPID"
+            android:value="364379" />
+        <!-- 渠道注册的微信分享APP信息，请到微信开放平台注册申请 -->
+        <meta-data
+            android:name="MGC_WECHAT_APPID"
+            android:value="wx63b404da489795f6" />
+        <meta-data
+            android:name="MGC_WECHAT_APPSECRET"
+            android:value="38af4355c07cd27389d6a0043651d911" />
+
+        <!-- 猎豹SDK 配置 参数，以及使用的穿山甲广告位，如果此处不填，则默认使用Leto后台的配置穿山甲参数 -->
+        <meta-data
+            android:name="CMGAME_SDK_ID"
+            android:value="" />
+        <meta-data
+            android:name="CMGAME_HOST"
+            android:value="" />
+        <meta-data
+            android:name="CMGAME_TT_BANNER_ID"
+            android:value="" />
+        <meta-data
+            android:name="CMGAME_TT_VIDEO_ID"
+            android:value="" />
+
+    </application>
+
+</manifest>
